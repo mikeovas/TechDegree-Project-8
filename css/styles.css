@@ -1,11 +1,17 @@
-body {
-    position: relative;
+* {
     box-sizing: border-box;
+}
+
+h1 {
+    margin: 2.5%;
+    font-size: 1.2rem;
     }
 
-    h1 {
-        margin: 2%;
+
+body {
+    position: relative;
     }
+
 
 /* Employee Layout */
 .grid-container  {
@@ -15,8 +21,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    border: 1px;
-    margin: 2%;
+    margin: 2.5%;
 }
 
 .card {
@@ -24,12 +29,13 @@ body {
     justify-content: space-evenly;
     align-items: center;
     border: 2px solid #d9dbda;
-    border-radius: 5px;
+    border-radius: 10px;
+    padding: 5%;
 }
 
 .avatar {
     border-radius: 50%;
-    height: 7.5em;
+    height: 6.5em;
 }
 
 .text-container {
@@ -46,9 +52,13 @@ body {
     background: rgba(100, 100, 100, 0.4)
     }
 
+.hidden {
+    display: none;
+    }
+
 .modal {
     width: 375px;
-    margin: 15% auto auto;
+    margin: 15% auto;
     position: relative;
     text-align: center;
     background: #fff;
@@ -65,7 +75,5 @@ body {
     cursor: pointer;
     }
 
-.hidden {
-    display: none;
-}
+
 
