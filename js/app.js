@@ -45,7 +45,6 @@ function displayEmployees(employeeData) {
  
 
     function displayModal(index) {
-        console.log(index);
         // use object destructuring make our template literal cleaner
         let { name, dob, phone, email, location: { city, street, state, postcode
         }, picture } = employees[index];
