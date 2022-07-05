@@ -30,12 +30,13 @@ body {
     align-items: center;
     border: 2px solid #d9dbda;
     border-radius: 10px;
-    padding: 5%;
+
 }
 
 .avatar {
-    border-radius: 50%;
+    border-radius: 60%;
     height: 6.5em;
+    padding: 2.5%;
 }
 
 .text-container {
@@ -43,6 +44,7 @@ body {
 }
 
 /* modal container */
+
 .overlay {
     position: absolute;
     top: 0;
