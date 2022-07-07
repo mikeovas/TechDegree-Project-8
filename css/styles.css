@@ -58,6 +58,10 @@ body {
     display: none;
     }
 
+.seen {
+    display: block;
+}
+
 .modal {
     width: 375px;
     margin: 15% auto;
