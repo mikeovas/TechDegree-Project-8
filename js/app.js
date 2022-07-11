@@ -1,14 +1,13 @@
 // global variables
-let employees = [];
 const urlAPI = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=US`
 const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
+const nameFilterInput = document.querySelector("#name-filter");
 
 
-function displayModal(index) {
-    // console.log(employees[index]);
+function displayModal(index, employees) {
     // use object destructuring make our template literal cleaner
     let { 
         name, 
@@ -23,6 +22,7 @@ function displayModal(index) {
         }, 
         picture 
     } = employees[index];
+
     let date = new Date(dob.date);
 
     const modalHTML = `
@@ -47,19 +47,7 @@ modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
 });
 
-
-async function displayEmployees() {
-    let response = null;
-
-    try {
-        response = await fetch(urlAPI);
-        const data = await response.json();
-        employees = data.results;   
-    }
-    catch (err) {
-        console.log(err);
-    }    
-
+async function displayEmployees(employees) {    
     // store the employee HTML as its created
     let employeeHTML = '';
 
@@ -81,18 +69,64 @@ async function displayEmployees() {
                 </div>
             </div>
             `
+            // console.log(employees[index]);
     });
 
     gridContainer.innerHTML = employeeHTML;
 
     const cards = Array.from(gridContainer.getElementsByClassName('card'));
     cards.forEach((card) => {
-        const index = card.getAttribute('data-index');        
-
-        card.addEventListener('click', (e) => {       
-            displayModal(index);
+        const index = card.getAttribute('data-index'); 
+    
+        card.addEventListener('click', (e) => {    
+            displayModal(index, employees);
         });
     });
 }
 
-displayEmployees();
+let employees = [];
+
+nameFilterInput.addEventListener('keyup', (e) => {    
+    let nameFilter = e.target.value;
+    console.log(nameFilter);
+    let filteredEmployees = [];
+
+    function prepareName(str) {
+        return str.toLowerCase().trim();
+    }
+
+    if (nameFilter) {
+        filteredEmployees = employees.filter((employee) => {
+            searchStr = prepareName(nameFilter);
+            let employeeName = '';
+            
+            Object.values(employee.name).forEach((name) => {
+                employeeName += prepareName(name);
+            });
+
+            return employeeName.includes(searchStr);
+        });
+    }
+    else {
+        filteredEmployees = employees;
+    }
+
+    displayEmployees(filteredEmployees);
+});
+
+async function fetchEmployees() {  // main    
+    let response = null;
+
+    try {
+        response = await fetch(urlAPI);
+        const data = await response.json();
+        employees = data.results;   
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+    displayEmployees(employees);
+}
+
+fetchEmployees();
