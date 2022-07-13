@@ -81,5 +81,9 @@ body {
     cursor: pointer;
     }
 
-
+/* text search bar*/
+#name-filter {
+    margin-left: 2.5%;
+    border-radius: 5px;
+}
 

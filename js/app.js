@@ -5,7 +5,9 @@ const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
+let employees = [];
 
+// **** code to display Modal ****
 
 function displayModal(index, employees) {
     // use object destructuring make our template literal cleaner
@@ -43,11 +45,16 @@ function displayModal(index, employees) {
     modalContainer.innerHTML = modalHTML;
 }
 
+// **** code to close modal ****
+
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
 });
 
-async function displayEmployees(employees) {    
+
+// **** code to display employee information retrieved ****
+
+function displayEmployees(employees) {    
     // store the employee HTML as its created
     let employeeHTML = '';
 
@@ -69,26 +76,25 @@ async function displayEmployees(employees) {
                 </div>
             </div>
             `
-            // console.log(employees[index]);
     });
 
     gridContainer.innerHTML = employeeHTML;
 
     const cards = Array.from(gridContainer.getElementsByClassName('card'));
+
     cards.forEach((card) => {
         const index = card.getAttribute('data-index'); 
-    
         card.addEventListener('click', (e) => {    
             displayModal(index, employees);
         });
     });
 }
 
-let employees = [];
+
+// **** code to select employee from text search bar ****
 
 nameFilterInput.addEventListener('keyup', (e) => {    
     let nameFilter = e.target.value;
-    console.log(nameFilter);
     let filteredEmployees = [];
 
     function prepareName(str) {
@@ -114,7 +120,8 @@ nameFilterInput.addEventListener('keyup', (e) => {
     displayEmployees(filteredEmployees);
 });
 
-async function fetchEmployees() {  // main    
+// **** code to fetch employee data from the API **** 
+async function fetchEmployees() {  
     let response = null;
 
     try {
