@@ -44,14 +44,17 @@ function displayModal(index, employees) {
             ${birthday}</p>
         </div>
         `;
+        
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
+    document.body.style.overflow = "hidden";
 }
 
 // **** code to close modal ****
 
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
+    document.body.style.overflow = "auto";
 });
 
 

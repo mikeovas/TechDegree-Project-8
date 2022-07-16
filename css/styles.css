@@ -48,7 +48,6 @@ body {
 .overlay {
     height: 100%;
     width: 100%;
-    overflow: auto;
     position: fixed;
     top: 0;
     left: 0;
@@ -64,14 +63,14 @@ body {
 
 .modal {
     width: 375px;
-    height: 420px;
+    height: 450px;
     margin: 15% auto;
     position: relative;
     text-align: center;
     background: #fff;
     border: 1px solid #778;
     border-radius: 5px;
-    padding: 30px 20px;
+    padding: 50px 50px;
     }
 
 .modal-close {
