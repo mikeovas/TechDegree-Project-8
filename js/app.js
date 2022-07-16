@@ -25,9 +25,11 @@ function displayModal(index, employees) {
         picture 
     } = employees[index];
 
-    console.log(street);
-
     let date = new Date(dob.date);
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let year = String(date.getFullYear()).padStart(2, '0');
+    let birthday = [day, month, year].join('/');
 
     const modalHTML = `
         <img class="avatar" src="${picture.large}" />
@@ -39,10 +41,10 @@ function displayModal(index, employees) {
             <p>${phone}</p>
             <p class="address">${street.number}, ${street.name}, ${state}, ${postcode}</p>
             <p>Birthday:
-            ${date.getMonth()}/${date.getDate()}/${date.getFullYear()}</p>
+            ${birthday}</p>
         </div>
         `;
-
+console.log(dob);
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
 }
