@@ -44,7 +44,6 @@ function displayModal(index, employees) {
             ${birthday}</p>
         </div>
         `;
-console.log(dob);
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
 }
