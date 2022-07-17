@@ -56,14 +56,13 @@ function displayModal(index, employees) {
         let buttonPressed = e.target.classList.value;
         console.log(buttonPressed);
         if(buttonPressed === "rightButton") {
-            console.log(`right button pressed ${index}`);
-        } else {
+            console.log(`right button pressed`);
+
+        } 
+        else {
             console.log('left button pressed')
         }
-
-
     })
-
 }
 
 
@@ -85,20 +84,17 @@ modalClose.addEventListener('click', () => {
 
 
 // **** code to display employee information retrieved ****
-
 function displayEmployees(employees) {    
     // store the employee HTML as its created
     let employeeHTML = '';
-
     // loop through each employee to create HTML markup
     employees.forEach((employee, index) => {
         let name = employee.name;
         let email = employee.email;
         let city = employee.location.city;
         let picture = employee.picture;
-
-        // template template literal to display each card
-        employeeHTML += `
+    // template template literal to display each card
+    employeeHTML += `
             <div class="card" data-index="${index}">
                 <img class="avatar" src="${picture.large}" />
                 <div class="text-container">
@@ -111,9 +107,7 @@ function displayEmployees(employees) {
     });
 
     gridContainer.innerHTML = employeeHTML;
-
     const cards = Array.from(gridContainer.getElementsByClassName('card'));
-
     cards.forEach((card) => {
         const index = card.getAttribute('data-index'); 
         card.addEventListener('click', (e) => {    
@@ -123,14 +117,10 @@ function displayEmployees(employees) {
 }
 
 
-
-
 // **** code to select employee from text search bar ****
-
 nameFilterInput.addEventListener('keyup', (e) => {    
     let nameFilter = e.target.value;
     let filteredEmployees = [];
-
     function prepareName(str) {
         return str.toLowerCase().trim();
     }
@@ -138,12 +128,10 @@ nameFilterInput.addEventListener('keyup', (e) => {
     if (nameFilter) {
         filteredEmployees = employees.filter((employee) => {
             searchStr = prepareName(nameFilter);
-            let employeeName = '';
-            
+            let employeeName = '';      
             Object.values(employee.name).forEach((name) => {
                 employeeName += prepareName(name);
             });
-
             return employeeName.includes(searchStr);
         });
     }
