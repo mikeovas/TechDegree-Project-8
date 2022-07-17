@@ -4,7 +4,8 @@
 
 h1 {
     margin: 2.5%;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    color: rgb(34, 27, 74, 0.78);
     }
 
 
@@ -30,7 +31,6 @@ body {
     align-items: center;
     border: 2px solid #d9dbda;
     border-radius: 10px;
-
 }
 
 .avatar {
@@ -81,8 +81,22 @@ body {
     }
 
 /* text search bar*/
-#name-filter {
+
+::placeholder {
+    color: rgba(34, 27, 74, 0.78);
+    opacity: 0.5;
+}
+
+.filter {
     margin-left: 2.5%;
+    color: rgba(34, 27, 74, 0.78);
+    font-weight: 600;
+}
+
+#name-filter {
+    margin-left: 0.5%;
     border-radius: 5px;
+    width: 300px;
+    border-color: rgba(34, 27, 74, 0.3);
 }
 
