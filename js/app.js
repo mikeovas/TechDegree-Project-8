@@ -6,6 +6,8 @@ const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
 let employees = [];
+const changeEmployees = document.querySelector(".modal");
+console.log(changeEmployees);
 
 // **** code to display Modal ****
 
@@ -48,7 +50,29 @@ function displayModal(index, employees) {
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
     document.body.style.overflow = "hidden";
+
+    changeEmployees.addEventListener('click', (e) => {
+ 
+        let buttonPressed = e.target.classList.value;
+        console.log(buttonPressed);
+        if(buttonPressed === "rightButton") {
+            console.log(`right button pressed ${index}`);
+        } else {
+            console.log('left button pressed')
+        }
+
+
+    })
+
 }
+
+
+
+
+
+
+
+
 
 // **** code to close modal ****
 
@@ -56,6 +80,8 @@ modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
     document.body.style.overflow = "auto";
 });
+
+
 
 
 // **** code to display employee information retrieved ****
@@ -97,6 +123,8 @@ function displayEmployees(employees) {
 }
 
 
+
+
 // **** code to select employee from text search bar ****
 
 nameFilterInput.addEventListener('keyup', (e) => {    
@@ -125,6 +153,8 @@ nameFilterInput.addEventListener('keyup', (e) => {
 
     displayEmployees(filteredEmployees);
 });
+
+
 
 // **** code to fetch employee data from the API **** 
 async function fetchEmployees() {  
