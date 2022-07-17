@@ -80,6 +80,29 @@ body {
     cursor: pointer;
     }
 
+.rightButton,
+.leftButton {
+    font-size: large;
+    color: rgba(34, 27, 74, 0.78);
+    position: absolute;
+    height: 30px;
+}
+
+.rightButton {
+    top: 50%;
+    left: 20;
+    right: 0;
+    bottom: 0;
+}
+
+.leftButton {
+    top: 50%;
+    left: 0;
+    right: 20;
+    bottom: 0;
+}
+
+
 /* text search bar*/
 
 ::placeholder {
