@@ -56,7 +56,8 @@ function displayModal(index, employees) {
         let buttonPressed = e.target.classList.value;
         console.log(buttonPressed);
         if(buttonPressed === "rightButton") {
-            console.log(`right button pressed`);
+            console.log(`right button pressed ${index}`);
+        
 
         } 
         else {
@@ -112,6 +113,7 @@ function displayEmployees(employees) {
         const index = card.getAttribute('data-index'); 
         card.addEventListener('click', (e) => {    
             displayModal(index, employees);
+            return index;
         });
     });
 }
