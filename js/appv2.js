@@ -6,7 +6,7 @@ const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
 let employees = [];
-const changeEmployees = document.querySelector(".modal");
+const changeEmployees = document.querySelector(".scroll");
 console.log(changeEmployees);
 
 // **** code to display Modal ****
@@ -51,18 +51,23 @@ function displayModal(index, employees) {
     modalContainer.innerHTML = modalHTML;
     document.body.style.overflow = "hidden";
 
+
+
+
     changeEmployees.addEventListener('click', (e) => {
  
         let buttonPressed = e.target.classList.value;
         console.log(buttonPressed);
+
         if(buttonPressed === "rightButton") {
             console.log(`right button pressed ${index}`);
+        
 
         } 
         else {
             console.log('left button pressed')
         }
-    });
+    })
 }
 
 
@@ -79,6 +84,9 @@ modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
     document.body.style.overflow = "auto";
 });
+
+
+
 
 
 
@@ -112,10 +120,12 @@ function displayEmployees(employees) {
         const index = card.getAttribute('data-index'); 
         card.addEventListener('click', (e) => {    
             displayModal(index, employees);
-            return index;
         });
     });
 }
+
+
+
 
 
 // **** code to select employee from text search bar ****
