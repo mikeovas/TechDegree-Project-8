@@ -5,16 +5,14 @@ const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
+const rightBtn = document.querySelector('.rightButton');
+const leftBtn = document.querySelector('.leftButton');
 let employees = [];
-const changeEmployees = document.querySelector(".modal");
-console.log(changeEmployees);
-
 
 
 // **** code to fetch employee data from the API **** 
 async function fetchEmployees() {  
-    let response = null;
-
+    let response;
     try {
         response = await fetch(urlAPI);
         const data = await response.json();
@@ -23,9 +21,9 @@ async function fetchEmployees() {
     catch (err) {
         console.log(err);
     }
-
     displayEmployees(employees);
 }
+
 
 fetchEmployees();
 
@@ -50,16 +48,14 @@ function displayEmployees(employees) {
                     <p class="address">${city}</p>
                 </div>
             </div>
-            `
+        `
     });
-
     gridContainer.innerHTML = employeeHTML;
     const cards = Array.from(gridContainer.getElementsByClassName('card'));
     cards.forEach((card) => {
         const index = card.getAttribute('data-index'); 
         card.addEventListener('click', (e) => {    
             displayModal(index, employees);
-            return index;
         });
     });
 }
@@ -72,7 +68,6 @@ nameFilterInput.addEventListener('keyup', (e) => {
     function prepareName(str) {
         return str.toLowerCase().trim();
     }
-
     if (nameFilter) {
         filteredEmployees = employees.filter((employee) => {
             searchStr = prepareName(nameFilter);
@@ -86,28 +81,12 @@ nameFilterInput.addEventListener('keyup', (e) => {
     else {
         filteredEmployees = employees;
     }
-
     displayEmployees(filteredEmployees);
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // **** code to display Modal ****
-function displayModal(index, employees) {
+function displayModal(index) {
     // use object destructuring make our template literal cleaner
     let { 
         name, 
@@ -123,6 +102,7 @@ function displayModal(index, employees) {
         picture 
     } = employees[index];
 
+    employeeIndex = employees.indexOf(employees[index]);
     let date = new Date(dob.date);
     let month = String(date.getMonth() + 1).padStart(2, '0');
     let day = String(date.getDate()).padStart(2, '0');
@@ -141,42 +121,38 @@ function displayModal(index, employees) {
             <p>Birthday:
             ${birthday}</p>
         </div>
-        `;
-        
+        `;  
     overlay.classList.remove("hidden");
     modalContainer.innerHTML = modalHTML;
-    document.body.style.overflow = "hidden";
-
-    changeEmployees.addEventListener('click', (e) => {
- 
-        let buttonPressed = e.target.classList.value;
-        console.log(buttonPressed);
-
-        if(buttonPressed === "rightButton") {
-            console.log(`right button pressed ${index}`)
-
-        } 
-        else {
-            console.log('left button pressed')
-        }
-    })
+    document.body.style.overflow = "hidden";    
 }
 
 
+// **** to display next card in modal ****
+function nextCard() {
+    if (employeeIndex < 11) {
+      displayModal(employeeIndex += 1);
+    }
+  }
+  
+  // **** to display previous card in modal ****
+  function previousCard() {
+    if (employeeIndex > 0) {
+      displayModal(employeeIndex -= 1);
+    }
+  }
+
 
 // **** code to close modal ****
-
 modalClose.addEventListener('click', () => {
     overlay.classList.add("hidden");
     document.body.style.overflow = "auto";
 });
 
 
-
-
-
-
-
+// **** event listeners to scroll through modal cards ****
+rightBtn.addEventListener('click', nextCard);     
+leftBtn.addEventListener('click', previousCard);
 
 
 
