@@ -9,8 +9,6 @@ const rightBtn = document.querySelector('.rightButton');
 const leftBtn = document.querySelector('.leftButton');
 let employees = [];
 
-// **** Get the twelve employees from the API ****
-fetchEmployees();
 
 // **** code to fetch employee data from the API **** 
 async function fetchEmployees() {  
@@ -25,6 +23,10 @@ async function fetchEmployees() {
     }
     displayEmployees(employees);
 }
+
+
+fetchEmployees();
+
 
 // **** code to display employee information retrieved ****
 function displayEmployees(employees) {    
@@ -58,6 +60,7 @@ function displayEmployees(employees) {
     });
 }
 
+
 // **** code to select employee from text search bar ****
 nameFilterInput.addEventListener('keyup', (e) => {    
     let nameFilter = e.target.value;
@@ -80,6 +83,7 @@ nameFilterInput.addEventListener('keyup', (e) => {
     }
     displayEmployees(filteredEmployees);
 });
+
 
 // **** code to display Modal ****
 function displayModal(index) {
@@ -123,29 +127,21 @@ function displayModal(index) {
     document.body.style.overflow = "hidden";    
 }
 
+
 // **** to display next card in modal ****
 function nextCard() {
     if (employeeIndex < 11) {
-        leftBtn.classList.remove('hidden');
-        displayModal(employeeIndex += 1);
-    } else if (employeeIndex === 11) {
-        rightBtn.classList.add('hidden');  
-    } else {
-        rightBtn.classList.remove('hidden');
+      displayModal(employeeIndex += 1);
     }
   }
   
   // **** to display previous card in modal ****
   function previousCard() {
     if (employeeIndex > 0) {
-        rightBtn.classList.remove('hidden');  
-        displayModal(employeeIndex -= 1);
-    } else if (employeeIndex === 0) {
-        leftBtn.classList.add('hidden');  
-    } else {
-        leftBtn.classList.remove('hidden');
+      displayModal(employeeIndex -= 1);
     }
   }
+
 
 // **** code to close modal ****
 modalClose.addEventListener('click', () => {
@@ -153,9 +149,8 @@ modalClose.addEventListener('click', () => {
     document.body.style.overflow = "auto";
 });
 
+
 // **** event listeners to scroll through modal cards ****
 rightBtn.addEventListener('click', nextCard);     
 leftBtn.addEventListener('click', previousCard);
-
-
 
