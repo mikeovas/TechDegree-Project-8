@@ -7,7 +7,9 @@ const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
 const rightBtn = document.querySelector('.rightButton');
 const leftBtn = document.querySelector('.leftButton');
+const modalButtons = document.getElementsByClassName('modalButton');
 let employees = [];
+
 
 // **** Get the twelve employees from the API ****
 fetchEmployees();
@@ -53,7 +55,7 @@ function displayEmployees(employees) {
     cards.forEach((card) => {
         const index = card.getAttribute('data-index'); 
         card.addEventListener('click', (e) => {    
-            displayModal(index, employees);
+            displayModal(index);
         });
     });
 }
@@ -79,10 +81,18 @@ nameFilterInput.addEventListener('keyup', (e) => {
         filteredEmployees = employees;
     }
     displayEmployees(filteredEmployees);
+    console.log(filteredEmployees);
+
 });
+
+
+
+
+
 
 // **** code to display Modal ****
 function displayModal(index) {
+ 
     // use object destructuring make our template literal cleaner
     let { 
         name, 
@@ -156,6 +166,7 @@ modalClose.addEventListener('click', () => {
 // **** event listeners to scroll through modal cards ****
 rightBtn.addEventListener('click', nextCard);     
 leftBtn.addEventListener('click', previousCard);
+
 
 
 
