@@ -8,11 +8,9 @@ h1 {
     color: rgb(34, 27, 74, 0.78);
     }
 
-
 body {
     position: relative;
     }
-
 
 /* Employee Layout */
 .grid-container  {
@@ -44,7 +42,6 @@ body {
 }
 
 /* modal container */
-
 .overlay {
     height: 100%;
     width: 100%;
@@ -59,7 +56,6 @@ body {
 .hidden {
     display: none;
     }
-
 
 .modal {
     width: 375px;
@@ -100,9 +96,7 @@ body {
     transition: translateY(-50%);
 }
 
-
 /* text search bar*/
-
 ::placeholder {
     color: rgba(34, 27, 74, 0.78);
     opacity: 0.5;

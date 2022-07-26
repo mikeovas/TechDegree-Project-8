@@ -5,13 +5,8 @@ const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
-let rightBtn = document.querySelector('.rightButton');
-let leftBtn = document.querySelector('.leftButton');
 const modalButtons = document.getElementsByClassName('modalButton');
 let allEmployees = [];
-
-
-
 
 // **** Get the twelve employees from the API ****
 fetchEmployees();
@@ -82,17 +77,11 @@ nameFilterInput.addEventListener('keyup', (e) => {
     else {
         filteredEmployees = allEmployees;
     }
-    displayEmployees(filteredEmployees);
-    
+    displayEmployees(filteredEmployees);    
 });
-
-
-
-
 
 // **** code to display Modal ****
 function displayModal(index, employees) {
- 
     // use object destructuring to make the template literal cleaner
     let { 
         name, 
@@ -134,20 +123,21 @@ function displayModal(index, employees) {
     modalContainer.innerHTML = modalHTML;
     document.body.style.overflow = "hidden";   
     
+    // **** variables to select for buttons **** 
     rightBtn = document.querySelector('.rightButton');
     leftBtn = document.querySelector('.leftButton');
 
     // **** event listeners to scroll through modal cards ****
-
     rightBtn.addEventListener('click', () =>{
         nextCard(employees);
-    });  
+    });
+
     leftBtn.addEventListener('click', () => {
         previousCard(employees);
     });
 }
 
-// **** to display next card in modal ****
+// **** functions to display next card in modal ****
 function nextCard(employees) {
     if (employeeIndex < employees.length-1) {
         leftBtn.classList.remove('hidden');
@@ -157,7 +147,6 @@ function nextCard(employees) {
     } else {
         rightBtn.classList.remove('hidden');
     }
-
   }
   
   // **** to display previous card in modal ****
