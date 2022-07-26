@@ -90,7 +90,7 @@ nameFilterInput.addEventListener('keyup', (e) => {
 
 
 // **** code to display Modal ****
-function displayModal(index, ) {
+function displayModal(index) {
  
     // use object destructuring make our template literal cleaner
     let { 
