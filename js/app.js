@@ -11,6 +11,7 @@ const modalButtons = document.getElementsByClassName('modalButton');
 let employees = [];
 
 
+
 // **** Get the twelve employees from the API ****
 fetchEmployees();
 
@@ -81,17 +82,15 @@ nameFilterInput.addEventListener('keyup', (e) => {
         filteredEmployees = employees;
     }
     displayEmployees(filteredEmployees);
-    console.log(filteredEmployees);
-
+    
 });
 
 
 
 
 
-
 // **** code to display Modal ****
-function displayModal(index) {
+function displayModal(index, ) {
  
     // use object destructuring make our template literal cleaner
     let { 

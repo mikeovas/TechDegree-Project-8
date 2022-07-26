@@ -7,8 +7,12 @@ const modalClose = document.querySelector(".modal-close");
 const nameFilterInput = document.querySelector("#name-filter");
 const rightBtn = document.querySelector('.rightButton');
 const leftBtn = document.querySelector('.leftButton');
+const modalButtons = document.getElementsByClassName('modalButton');
 let employees = [];
 
+
+// **** Get the twelve employees from the API ****
+fetchEmployees();
 
 // **** code to fetch employee data from the API **** 
 async function fetchEmployees() {  
@@ -23,10 +27,6 @@ async function fetchEmployees() {
     }
     displayEmployees(employees);
 }
-
-
-fetchEmployees();
-
 
 // **** code to display employee information retrieved ****
 function displayEmployees(employees) {    
@@ -55,11 +55,10 @@ function displayEmployees(employees) {
     cards.forEach((card) => {
         const index = card.getAttribute('data-index'); 
         card.addEventListener('click', (e) => {    
-            displayModal(index, employees);
+            displayModal(index);
         });
     });
 }
-
 
 // **** code to select employee from text search bar ****
 nameFilterInput.addEventListener('keyup', (e) => {    
@@ -82,11 +81,18 @@ nameFilterInput.addEventListener('keyup', (e) => {
         filteredEmployees = employees;
     }
     displayEmployees(filteredEmployees);
+    console.log(filteredEmployees);
+
 });
+
+
+
+
 
 
 // **** code to display Modal ****
 function displayModal(index) {
+ 
     // use object destructuring make our template literal cleaner
     let { 
         name, 
@@ -127,21 +133,29 @@ function displayModal(index) {
     document.body.style.overflow = "hidden";    
 }
 
-
 // **** to display next card in modal ****
 function nextCard() {
     if (employeeIndex < 11) {
-      displayModal(employeeIndex += 1);
+        leftBtn.classList.remove('hidden');
+        displayModal(employeeIndex += 1);
+    } else if (employeeIndex === 11) {
+        rightBtn.classList.add('hidden');  
+    } else {
+        rightBtn.classList.remove('hidden');
     }
   }
   
   // **** to display previous card in modal ****
   function previousCard() {
     if (employeeIndex > 0) {
-      displayModal(employeeIndex -= 1);
+        rightBtn.classList.remove('hidden');  
+        displayModal(employeeIndex -= 1);
+    } else if (employeeIndex === 0) {
+        leftBtn.classList.add('hidden');  
+    } else {
+        leftBtn.classList.remove('hidden');
     }
   }
-
 
 // **** code to close modal ****
 modalClose.addEventListener('click', () => {
@@ -149,8 +163,6 @@ modalClose.addEventListener('click', () => {
     document.body.style.overflow = "auto";
 });
 
-
 // **** event listeners to scroll through modal cards ****
 rightBtn.addEventListener('click', nextCard);     
 leftBtn.addEventListener('click', previousCard);
-
